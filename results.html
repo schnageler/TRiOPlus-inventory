@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Apartment Comparison Tool Results</title>
-</head>
-<body>
-	<h1>Apartment Comparison Tool Results</h1>
-	<p>Apartment count for yesterday: {{ count_yesterday }}</p>
-	<p>Apartment count for today: {{ count_today }}</p>
-	<p>New properties on today's list:</p>
-	{% if new_properties.empty %}
-		<p>No new properties found.</p>
-	{% else %}
-		<ul>
-			{% for index, row in new_properties.iterrows() %}
-				<li>{{ row['Property'] }} - {{ row['Unit'] }}</li>
-			{% endfor %}
-		</ul>
-	{% endif %}
-	<p>Removed properties from yesterday's list:</p>
-	{% if removed_properties.empty %}
-		<p>No removed properties found.</p>
-	{% else %}
-		<ul>
-			{% for index, row in removed_properties.iterrows() %}
-				<li>{{ row['Property'] }} - {{ row['Unit'] }}</li>
-			{% endfor %}
-		</ul>
-	{% endif %}
-</body>
+  <head>
+    <title>Apartment Comparison Tool Results</title>
+  </head>
+  <body>
+    <h1>Apartment Comparison Tool Results</h1>
+    <p>Apartment count for yesterday: {{ count_yesterday }}</p>
+    <p>Apartment count for today: {{ count_today }}</p>
+    <p>New properties on today's list:</p>
+    {% if not new_properties %}
+      <p>No new properties found.</p>
+    {% else %}
+      <ul>
+      {% for property in new_properties %}
+        <li>{{ property }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+    <p>Removed properties from yesterday's list:</p>
+    {% if not removed_properties %}
+      <p>No removed properties found.</p>
+    {% else %}
+      <ul>
+      {% for property in removed_properties %}
+        <li>{{ property }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  </body>
 </html>
